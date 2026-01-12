@@ -1,0 +1,704 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NightSudo Community - Ethical Hacking Education</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --midnight: #0b0f19;
+      --deep-navy: #151b2b;
+      --slate: #1e293b;
+      --cyan: #06d6a0;
+      --electric: #00e5ff;
+      --gold: #ffd93d;
+      --crimson: #ff006e;
+      --white: #f8fafc;
+      --gray: #94a3b8;
+      --light-slate: #334155;
+    }
+
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      background: var(--midnight);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+
+    .wrapper {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(6, 214, 160, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255, 217, 61, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    nav {
+      background: rgba(21, 27, 43, 0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(6, 214, 160, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+    }
+
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--cyan);
+      text-shadow: 0 0 20px rgba(6, 214, 160, 0.5);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--gray);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-link:hover {
+      color: var(--cyan);
+    }
+
+    header {
+      text-align: center;
+      padding: 5rem 2rem 3rem;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin: 0 0 1rem 0;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--cyan), var(--electric), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -1px;
+      text-shadow: 0 0 40px rgba(6, 214, 160, 0.3);
+    }
+
+    .tagline {
+      color: var(--gray);
+      font-size: 1.3rem;
+      margin-top: 1rem;
+      font-weight: 400;
+    }
+
+    .member-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--cyan), var(--electric));
+      color: var(--midnight);
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      margin-top: 1.5rem;
+      box-shadow: 0 8px 24px rgba(6, 214, 160, 0.4);
+      font-size: 1rem;
+    }
+
+    .section {
+      background: rgba(21, 27, 43, 0.5);
+      border: 1px solid var(--light-slate);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 2rem;
+      backdrop-filter: blur(12px);
+      animation: fadeIn 1s ease-out;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      color: var(--cyan);
+      font-size: 2.2rem;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    h3 {
+      color: var(--electric);
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    p {
+      line-height: 1.8;
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+
+    .highlight {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .warning-box {
+      background: linear-gradient(135deg, rgba(255, 0, 110, 0.15), rgba(255, 0, 110, 0.05));
+      border: 2px solid var(--crimson);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .warning-box::before {
+      content: '⚠️';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      font-size: 8rem;
+      opacity: 0.1;
+    }
+
+    .warning-box h3 {
+      color: var(--crimson);
+      margin-top: 0;
+    }
+
+    .info-box {
+      background: linear-gradient(135deg, rgba(6, 214, 160, 0.15), rgba(0, 229, 255, 0.05));
+      border: 2px solid var(--cyan);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .info-box h3 {
+      color: var(--cyan);
+      margin-top: 0;
+    }
+
+    .steps-list {
+      list-style: none;
+      padding: 0;
+      counter-reset: step-counter;
+    }
+
+    .steps-list li {
+      counter-increment: step-counter;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      background: rgba(6, 214, 160, 0.05);
+      border-left: 4px solid var(--cyan);
+      border-radius: 12px;
+      position: relative;
+      padding-left: 4rem;
+      transition: all 0.3s ease;
+    }
+
+    .steps-list li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--cyan);
+      color: var(--midnight);
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .steps-list li:hover {
+      background: rgba(6, 214, 160, 0.1);
+      transform: translateX(8px);
+    }
+
+    .form-container {
+      max-width: 700px;
+      margin: 2rem auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--cyan);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      background: rgba(30, 41, 59, 0.8);
+      border: 2px solid var(--light-slate);
+      border-radius: 12px;
+      color: var(--white);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 4px rgba(6, 214, 160, 0.1);
+      background: rgba(30, 41, 59, 1);
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: var(--gray);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, var(--cyan), var(--electric));
+      color: var(--midnight);
+      border: none;
+      padding: 1.25rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      font-family: 'Space Grotesk', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 24px rgba(6, 214, 160, 0.4);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(6, 214, 160, 0.6);
+    }
+
+    .submit-btn:active {
+      transform: translateY(-1px);
+    }
+
+    .discord-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #5865F2;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 1.25rem 2.5rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 12px;
+      margin: 1.5rem auto;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(88, 101, 242, 0.4);
+    }
+
+    .discord-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(88, 101, 242, 0.6);
+      background: #4752c4;
+    }
+
+    .instagram-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--electric);
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--electric);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .instagram-link:hover {
+      background: rgba(0, 229, 255, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 229, 255, 0.3);
+    }
+
+    .success-message {
+      display: none;
+      background: rgba(6, 214, 160, 0.15);
+      border: 2px solid var(--cyan);
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      margin-top: 2rem;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .success-message p {
+      color: var(--cyan);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .rules-grid {
+      display: grid;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .rule-card {
+      background: rgba(30, 41, 59, 0.5);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--light-slate);
+      transition: all 0.3s ease;
+    }
+
+    .rule-card:hover {
+      border-color: var(--cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(6, 214, 160, 0.2);
+    }
+
+    .rule-number {
+      display: inline-block;
+      background: var(--cyan);
+      color: var(--midnight);
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 2rem;
+      font-weight: 700;
+      margin-right: 0.75rem;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+
+      .section {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+      }
+
+      nav {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+
+      header {
+        padding: 3rem 1rem 2rem;
+      }
+
+      .logo {
+        font-size: 1.2rem;
+      }
+
+      .steps-list li {
+        padding-left: 3.5rem;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="animated-bg"></div>
+  <div class="wrapper">
+   <nav>
+    <div class="nav-content">
+     <div class="logo" id="nav-logo">
+      ⚡ NightSudo
+     </div>
+     <div class="nav-links"><a class="nav-link" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">About</a> <a class="nav-link" onclick="document.getElementById('api').scrollIntoView({behavior: 'smooth'})">API Setup</a> <a class="nav-link" onclick="document.getElementById('join').scrollIntoView({behavior: 'smooth'})">Join</a>
+     </div>
+    </div>
+   </nav>
+   <div class="container">
+    <header>
+     <h1 id="community-name">NightSudo Community</h1>
+     <p class="tagline" id="tagline">Learn Ethical Hacking with AI-Powered Education</p>
+     <div class="member-badge">
+      🛡️ <span id="member-count">150+</span> Active Members
+     </div>
+    </header>
+    <main><!-- About Section -->
+     <section class="section" id="about">
+      <h2>🎯 About NightSudo Community</h2>
+      <p><strong>NightSudo is a community that helps teach hacking to anyone, from anywhere.</strong> You can access the NightSudo community and learn ethical hacking through our AI-powered education system.</p>
+      <div class="info-box">
+       <h3>ℹ️ What is Hacking?</h3>
+       <p><span class="highlight">Hacking is the future.</span> Hacking is a term used when someone breaks into or accesses data <strong>without permission</strong>. At NightSudo, we teach you to do hacking <span class="highlight">LEGALLY with permission</span>.</p>
+       <p><strong>This is NOT a hacking community website.</strong> We teach hacking for <span class="highlight">awareness purposes only</span>. If you want to do hacking, do it legally and with proper authorization.</p>
+      </div>
+      <div class="warning-box">
+       <h3>⚠️ Important Community Rules</h3>
+       <div class="rules-grid">
+        <div class="rule-card">
+         <p><span class="rule-number">1</span> <strong>NEVER SHARE API KEYS</strong> with anyone except the admin. This is the #1 rule of NightSudo community.</p>
+        </div>
+        <div class="rule-card">
+         <p><span class="rule-number">2</span> If you leave the community, please <strong>DELETE or DEACTIVATE your API keys immediately</strong>.</p>
+        </div>
+        <div class="rule-card">
+         <p><span class="rule-number">3</span> <strong>Respect the Admin.</strong> We have <span class="highlight">150+ members</span>. Please stay away from the admin if you want to cause problems. We will expose all your personal data if you violate community rules.</p>
+        </div>
+        <div class="rule-card">
+         <p><span class="rule-number">4</span> <strong>No Direct Discussions.</strong> We only communicate using API keys through our AI system.</p>
+        </div>
+       </div>
+      </div>
+     </section><!-- API Setup Section -->
+     <section class="section" id="api">
+      <h2>🔑 How to Get Your API Key</h2>
+      <p>To join the NightSudo AI learning system, you need to create and share your Google AI Studio API key with the admin.</p>
+      <h3>📋 Step-by-Step Instructions:</h3>
+      <ol class="steps-list">
+       <li><strong>Install Google AI Studio App</strong><br>
+         Download and install the Google AI Studio application on your device.</li>
+       <li><strong>Open the App and Create API Keys</strong><br>
+         Open Google AI Studio and generate your API keys from the settings.</li>
+       <li><strong>Forward API Information to Admin</strong><br>
+         Share all the API information with the admin through our official Instagram account only.</li>
+      </ol>
+      <div class="warning-box">
+       <h3 id="api-warning-title">⚠️ NEVER SHARE YOUR API KEY</h3>
+       <p style="color: var(--white); font-size: 1.2rem; font-weight: 600;">Share your API key <strong>ONLY</strong> with the admin through the official Instagram account below. Never share it with anyone else!</p><a href="https://www.instagram.com/nightsudo_official" target="_blank" rel="noopener noreferrer" class="instagram-link" id="instagram-link" style="margin-top: 1rem;"> 📸 @nightsudo_official </a>
+      </div>
+      <div class="info-box">
+       <h3>✅ What Happens Next?</h3>
+       <p>After you share your API key, we will verify it within a few days and add it to our AI system. From there, you can interact with other members through the AI.</p>
+       <p><strong>🎉 If your API key is fixed and accepted, you become a lifetime member!</strong> Your information will <span class="highlight">never be shared with anyone</span>.</p>
+       <p style="margin-top: 1.5rem; color: var(--gray); font-size: 0.95rem;"><em>The AI will come soon... Please share your API information to be part of the AI-powered learning experience. If you share your API, we will use it in the AI system.</em></p>
+       <p style="color: var(--gold); font-weight: 600;">🛡️ TERMS AND CONDITIONS APPLIED</p>
+      </div>
+     </section><!-- Join Discord Section -->
+     <section class="section" id="join" style="text-align: center; background: linear-gradient(135deg, rgba(88, 101, 242, 0.1), rgba(6, 214, 160, 0.05));">
+      <h2 style="justify-content: center;">
+       <svg width="32" height="32" viewbox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z" />
+       </svg> Join Our Discord Community</h2>
+      <p style="font-size: 1.2rem; color: var(--gray); margin-bottom: 2rem;">Fill out the form below to join our Discord server and become part of the NightSudo community!</p><button onclick="window.open('https://discord.gg/C6aJTyHSY', '_blank', 'noopener,noreferrer')" class="discord-btn" id="discord-link" style="cursor: pointer;">
+       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z" />
+       </svg> Join NightSudo Discord </button>
+      <div class="form-container" style="margin-top: 3rem; text-align: left;">
+       <h3 style="text-align: center; color: var(--cyan);">📝 Application Form</h3>
+       <form id="joinForm">
+        <div class="form-group"><label for="fullName">Full Name</label> <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+        </div>
+        <div class="form-group"><label for="codedName">Coded Name (Name + Birthday Date)</label> <input type="text" id="codedName" name="codedName" required placeholder="Example: 1=a, 2=b, so 'John' born on 12th = 'a2ohn'">
+        </div>
+        <div class="form-group"><label for="reason">Why Are You Interested in Joining?</label> <textarea id="reason" name="reason" required placeholder="Tell us why you want to join NightSudo Community"></textarea>
+        </div>
+        <div class="form-group"><label for="description">Describe Yourself</label> <textarea id="description" name="description" required placeholder="Tell us about your background, skills, and interests"></textarea>
+        </div>
+        <div class="form-group"><label for="additional">Anything Else We Should Know?</label> <textarea id="additional" name="additional" placeholder="Any additional information you'd like to share (optional)"></textarea>
+        </div><button type="submit" class="submit-btn">Generate Application</button>
+       </form>
+       <div id="successMessage" class="success-message">
+        <p>✅ Application Generated Successfully!</p>
+        <p style="color: var(--white);">Copy the message below and send it to our Instagram along with your API key information:</p>
+        <div id="applicationText" style="background: rgba(11, 15, 25, 0.8); padding: 1.5rem; margin: 1.5rem 0; border-radius: 12px; text-align: left; font-size: 0.95rem; white-space: pre-wrap; word-wrap: break-word; font-family: 'JetBrains Mono', monospace; color: var(--cyan); border: 1px solid var(--cyan);"></div><a href="https://www.instagram.com/nightsudo_official" target="_blank" rel="noopener noreferrer" class="instagram-link" id="instagram-link-form"> 📸 Send to @nightsudo_official </a>
+       </div>
+      </div>
+     </section>
+    </main>
+   </div>
+  </div>
+  <script>
+    // Element SDK Configuration
+    const defaultConfig = {
+      community_name: "NightSudo Community",
+      tagline: "Learn Ethical Hacking with AI-Powered Education",
+      member_count: "150+",
+      discord_url: "https://discord.gg/C6aJTyHSY",
+      instagram_url: "https://www.instagram.com/nightsudo_official",
+      api_warning: "NEVER SHARE YOUR API KEY WITH ANYONE EXCEPT ADMIN"
+    };
+
+    async function onConfigChange(config) {
+      const communityName = config.community_name || defaultConfig.community_name;
+      document.getElementById('nav-logo').textContent = '⚡ ' + communityName.split(' ')[0];
+      document.getElementById('community-name').textContent = communityName;
+      document.getElementById('tagline').textContent = config.tagline || defaultConfig.tagline;
+      document.getElementById('member-count').textContent = config.member_count || defaultConfig.member_count;
+      
+      const discordUrl = config.discord_url || defaultConfig.discord_url;
+      const instagramUrl = config.instagram_url || defaultConfig.instagram_url;
+      
+      const discordBtn = document.getElementById('discord-link');
+      discordBtn.onclick = function() {
+        window.open(discordUrl, '_blank', 'noopener,noreferrer');
+      };
+      
+      document.getElementById('instagram-link').href = instagramUrl;
+      document.getElementById('instagram-link-form').href = instagramUrl;
+      
+      const apiWarning = config.api_warning || defaultConfig.api_warning;
+      document.getElementById('api-warning-title').textContent = '⚠️ ' + apiWarning;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["community_name", config.community_name || defaultConfig.community_name],
+        ["tagline", config.tagline || defaultConfig.tagline],
+        ["member_count", config.member_count || defaultConfig.member_count],
+        ["discord_url", config.discord_url || defaultConfig.discord_url],
+        ["instagram_url", config.instagram_url || defaultConfig.instagram_url],
+        ["api_warning", config.api_warning || defaultConfig.api_warning]
+      ]);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Form handling
+    document.getElementById('joinForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = {
+        fullName: document.getElementById('fullName').value,
+        codedName: document.getElementById('codedName').value,
+        reason: document.getElementById('reason').value,
+        description: document.getElementById('description').value,
+        additional: document.getElementById('additional').value
+      };
+
+      const applicationText = `🛡️ NIGHTSUDO COMMUNITY APPLICATION 🛡️
+
+Full Name: ${formData.fullName}
+Coded Name: ${formData.codedName}
+
+Why I Want to Join:
+${formData.reason}
+
+About Me:
+${formData.description}
+
+Additional Information:
+${formData.additional || 'N/A'}
+
+---
+I have read and agree to the NightSudo community rules.
+I understand that I must share my Google AI Studio API key only with the admin.
+I will delete/deactivate my API key if I leave the community.
+
+Application Date: ${new Date().toLocaleDateString()}`;
+
+      document.getElementById('applicationText').textContent = applicationText;
+      document.getElementById('successMessage').style.display = 'block';
+      document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bc930c7638621ba',t:'MTc2ODE4NDU5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
